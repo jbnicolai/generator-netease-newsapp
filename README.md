@@ -1,4 +1,4 @@
-# generator-netease-newsapp [![Build Status](https://secure.travis-ci.org/ycinfinity/generator-netease-newsapp.png?branch=master)](https://travis-ci.org/ycinfinity/generator-netease-newsapp)
+# generator-netease-newsapp
 
 > [Yeoman](http://yeoman.io) generator
 
