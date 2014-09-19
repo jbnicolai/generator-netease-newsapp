@@ -50,6 +50,9 @@ var NeteaseNewsappGenerator = yeoman.generators.NamedBase.extend({
             p[v.name] = "*";
             return p;
         },promptsConfig["script"][self.promptsResult.scriptType].default.name || {});
+        if(self.promptsResult.styleType != 'normal') {
+            this.cssNpmDependencies = '"' + self.promptsResult.styleType + '"' + ': "*"';
+        }
         this.jsModules = self.promptsResult.scriptModules.map(function(v,i){
             return v.module;
         }).concat(promptsConfig["script"][self.promptsResult.scriptType].default.module);
@@ -66,10 +69,13 @@ var NeteaseNewsappGenerator = yeoman.generators.NamedBase.extend({
       this.dest.mkdir('app/scripts');
       this.dest.mkdir('app/styles');
       this.dest.mkdir('app/views');
-      this.src.copy('_package.json', 'package.json');
       this.template('_bower.json', 'bower.json',{
           appName : this.appName,
           dependencies : JSON.stringify(this.jsBowerDependencies)
+      });
+      this.template('_package.json', 'package.json',{
+          appName : this.appName,
+          dependencies : this.cssNpmDependencies
       });
       this.template('app/_index_'+this.appType+'.html', 'app/index.html', {
           appName : this.appName,

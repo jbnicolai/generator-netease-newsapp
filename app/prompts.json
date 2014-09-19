@@ -97,26 +97,17 @@
             "message": "What's your css type?",
             "choices": [
                 {
-                    "value": {
-                        "name": "normal",
-                        "module": "normal"
-                    },
+                    "value": "normal",
                     "name": "Normal",
                     "checked": true
                 },
                 {
-                    "value": {
-                        "name": "sass",
-                        "module": "gulp-sass"
-                    },
+                    "value": "gulp-sass",
                     "name": "Sass",
                     "checked": true
                 },
                 {
-                    "value": {
-                        "name": "less",
-                        "module": "gulp-less"
-                    },
+                    "value": "gulp-less",
                     "name": "Less",
                     "checked": true
                 }

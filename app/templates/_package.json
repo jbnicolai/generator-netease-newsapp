@@ -1,7 +1,10 @@
 {
   "name": "<%= appName %>",
   "version": "0.0.0",
-  "dependencies": <%= dependencies%>,
+  "dependencies": {
+   "gulp": "*",
+   <%= dependencies%>
+  },
   "engines": {
     "node": ">=0.10.0"
   }

@@ -19,13 +19,6 @@
         }
     },
     "style" : {
-        "sass": {
-            "default": {
-                "name": {
-                    "gulp": "*"
-                },
-                "module": ["gulp"]
-            }
-        }
+
     }
 }
