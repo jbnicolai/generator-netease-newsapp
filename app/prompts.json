@@ -1,0 +1,126 @@
+{
+    "info" : [
+        {
+            "type": "input",
+            "name": "appTitle",
+            "message": "What's your project title?",
+            "default": "网易"
+        }
+    ],
+    "script" : [
+        {
+            "type": "list",
+            "name": "scriptType",
+            "message": "What's your script architecture?",
+            "choices": [
+                {
+                    "name": "Normal",
+                    "value": "normal"
+                },
+                {
+                    "name": "Angular",
+                    "value": "angular"
+                }
+            ]
+        }
+    ],
+    "angular" : [
+        {
+            "type": "checkbox",
+            "name": "scriptModules",
+            "message": "Which Angular's modules would you want to install?",
+            "choices": [
+                {
+                    "value": {
+                        "name": "angular-animate",
+                        "module": "ngAnimate"
+                    },
+                    "name": "angular-animate.js",
+                    "checked": true
+                },
+                {
+                    "value": {
+                        "name": "angular-cookies",
+                        "module": "ngCookies"
+                    },
+                    "name": "angular-cookies.js",
+                    "checked": true
+                },
+                {
+                    "value": {
+                        "name": "angular-touch",
+                        "module": "ngTouch"
+                    },
+                    "name": "angular-touch.js",
+                    "checked": true
+                },
+                {
+                    "value": {
+                        "name": "angular-route",
+                        "module": "ngRoute"
+                    },
+                    "name": "angular-route.js",
+                    "checked": true
+                }
+            ]
+        }
+    ],
+    "normal" : [
+        {
+            "type": "checkbox",
+            "name": "scriptModules",
+            "message": "Which library would you want to install?",
+            "choices": [
+                {
+                    "value": {
+                        "name": "zepto",
+                        "module": "zepto"
+                    },
+                    "name": "zepto.js",
+                    "checked": true
+                },
+                {
+                    "value": {
+                        "name": "jquery",
+                        "module": "jquery"
+                    },
+                    "name": "jquery.js",
+                    "checked": true
+                }
+            ]
+        }
+    ],
+    "style" : [
+        {
+            "type": "list",
+            "name": "styleType",
+            "message": "What's your css type?",
+            "choices": [
+                {
+                    "value": {
+                        "name": "normal",
+                        "module": "normal"
+                    },
+                    "name": "Normal",
+                    "checked": true
+                },
+                {
+                    "value": {
+                        "name": "sass",
+                        "module": "gulp-sass"
+                    },
+                    "name": "Sass",
+                    "checked": true
+                },
+                {
+                    "value": {
+                        "name": "less",
+                        "module": "gulp-less"
+                    },
+                    "name": "Less",
+                    "checked": true
+                }
+            ]
+        }
+    ]
+}

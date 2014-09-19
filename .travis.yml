@@ -1,0 +1,7 @@
+language: node_js
+node_js:
+  - '0.10'
+before_install:
+  - currentfolder=${PWD##*/}
+  - if [ "$currentfolder" != 'generator-netease-newsapp' ]; then cd .. && eval "mv $currentfolder generator-netease-newsapp" && cd generator-netease-newsapp; fi
+

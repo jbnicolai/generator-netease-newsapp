@@ -1,0 +1,31 @@
+{
+    "order" : ["info","script","style"],
+    "script" : {
+        "angular": {
+            "default": {
+                "name": {
+                    "angular": "*",
+                    "angular-sanitize": "*"
+                },
+                "module": ["ngSanitize"]
+            }
+        },
+        "normal": {
+            "default": {
+                "name": {
+                },
+                "module": []
+            }
+        }
+    },
+    "style" : {
+        "sass": {
+            "default": {
+                "name": {
+                    "gulp": "*"
+                },
+                "module": ["gulp"]
+            }
+        }
+    }
+}
