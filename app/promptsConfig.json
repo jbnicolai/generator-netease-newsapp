@@ -1,24 +1,5 @@
 {
     "order" : ["info","script","style"],
-    "script" : {
-        "angular": {
-            "default": {
-                "name": {
-                    "angular": "*",
-                    "angular-sanitize": "*"
-                },
-                "module": ["ngSanitize"]
-            }
-        },
-        "normal": {
-            "default": {
-                "name": {
-                },
-                "module": []
-            }
-        }
-    },
-    "style" : {
-
-    }
+    "script" : ["angular","normal"],
+    "style" : ["sass"]
 }

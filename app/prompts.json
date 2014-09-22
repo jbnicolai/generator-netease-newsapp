@@ -85,7 +85,7 @@
                         "module": "jquery"
                     },
                     "name": "jquery.js",
-                    "checked": true
+                    "checked": false
                 }
             ]
         }
@@ -102,13 +102,32 @@
                     "checked": true
                 },
                 {
-                    "value": "gulp-sass",
+                    "value": "sass",
                     "name": "Sass",
                     "checked": true
                 },
                 {
-                    "value": "gulp-less",
+                    "value": "less",
                     "name": "Less",
+                    "checked": true
+                }
+            ]
+        }
+    ],
+    "sass" : [
+        {
+            "type": "list",
+            "name": "sassType",
+            "message": "What's your sass file type?",
+            "choices": [
+                {
+                    "value": "scss",
+                    "name": "Scss",
+                    "checked": true
+                },
+                {
+                    "value": "sass",
+                    "name": "Sass",
                     "checked": true
                 }
             ]
