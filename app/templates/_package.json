@@ -1,8 +1,12 @@
 {
   "name": "<%= appName %>",
   "version": "0.0.0",
-  "dependencies": {
-   "gulp": "*"
+  "devDependencies": {
+   "browser-sync": "*",
+   "gulp": "*",
+   "gulp-autoprefixer": "*",
+   "gulp-sass": "*",
+   "gulp-load-plugins": "*"
    <%= dependencies%>
   },
   "engines": {

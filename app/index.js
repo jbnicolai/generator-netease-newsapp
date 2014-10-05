@@ -7,11 +7,11 @@ var yosay = require('yosay');
 var fs = require('fs');
 var q = require('q');
 
-var NeteaseNewsappGenerator = yeoman.generators.NamedBase.extend({
+var NeteaseNewsappGenerator = yeoman.generators.Base.extend({
   initializing: function () {
     this.pkg = require('../package.json');
-    this.destinationRoot(this.destinationRoot()+'/'+this.name);
-    this.appName = this.name;
+    //this.destinationRoot(this.destinationRoot()+'/'+this.name);
+    //this.appName = this.name;
   },
   prompting: function () {
     var done = this.async();
@@ -44,12 +44,14 @@ var NeteaseNewsappGenerator = yeoman.generators.NamedBase.extend({
         }, p);
     }
     promiseArray(order,promise(order.shift(),0)(),0).then(function(){
+        this.appName = self.promptsResult.appName;
+        this.destinationRoot(this.destinationRoot()+'/'+this.appName);
         this.appType = self.promptsResult.scriptType;
         this.appTitle = self.promptsResult.appTitle;
         this.jsBowerDependencies = self.promptsResult.scriptModules.reduce(function(p,v,i){
             p[v.name] = "*";
             return p;
-        },{});
+        },{"angular": "*","angular-sanitize": "*"});
         this.jsModules = self.promptsResult.scriptModules.map(function(v,i){
             return v.module;
         });
@@ -84,6 +86,7 @@ var NeteaseNewsappGenerator = yeoman.generators.NamedBase.extend({
           appName : this.appName,
           dependencies : JSON.stringify(this.jsBowerDependencies)
       });
+      this.template('_gulpfile.js', 'gulpfile.js',{});
       this.template('_package.json', 'package.json',{
           appName : this.appName,
           dependencies : this.cssNpmDependencies
@@ -98,13 +101,13 @@ var NeteaseNewsappGenerator = yeoman.generators.NamedBase.extend({
               appName : this.appName,
               angularModules : '"'+this.jsModules.join('","')+'"'
           });
-          this.template('app/scripts/_controllers.js','app/scripts/controller.js',{
+          this.template('app/scripts/_controllers.js','app/scripts/controllers.js',{
               appName : this.appName
           });
-          this.template('app/scripts/_services.js','app/scripts/service.js',{
+          this.template('app/scripts/_services.js','app/scripts/services.js',{
               appName : this.appName
           });
-          this.template('app/scripts/_values.js','app/scripts/value.js',{
+          this.template('app/scripts/_values.js','app/scripts/values.js',{
               appName : this.appName
           });
           this.template('app/scripts/_directives.js','app/scripts/directives.js',{

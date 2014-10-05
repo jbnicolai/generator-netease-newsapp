@@ -2,6 +2,12 @@
     "info" : [
         {
             "type": "input",
+            "name": "appName",
+            "message": "What's your project name?",
+            "default": "netease"
+        }
+        ,{
+            "type": "input",
             "name": "appTitle",
             "message": "What's your project title?",
             "default": "网易"
