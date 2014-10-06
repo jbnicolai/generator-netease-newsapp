@@ -86,7 +86,7 @@ var NeteaseNewsappGenerator = yeoman.generators.Base.extend({
           appName : this.appName,
           dependencies : JSON.stringify(this.jsBowerDependencies)
       });
-      this.template('_gulpfile.js', 'gulpfile.js',{});
+      this.template('_gulpfile_'+this.appType+'.js', 'gulpfile.js',{});
       this.template('_package.json', 'package.json',{
           appName : this.appName,
           dependencies : this.cssNpmDependencies
@@ -113,7 +113,7 @@ var NeteaseNewsappGenerator = yeoman.generators.Base.extend({
           this.template('app/scripts/_directives.js','app/scripts/directives.js',{
               appName : this.appName
           });
-
+          this.template('app/views/_main_angular.html','app/views/main.html',{});
       }
   },
   install : function(){

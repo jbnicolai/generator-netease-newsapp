@@ -111,11 +111,6 @@
                     "value": "sass",
                     "name": "Sass",
                     "checked": true
-                },
-                {
-                    "value": "less",
-                    "name": "Less",
-                    "checked": true
                 }
             ]
         }

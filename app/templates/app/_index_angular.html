@@ -49,20 +49,25 @@
             opacity: 1;
         }
     </style>
+    <!-- build:css ../build/style/online.css -->
     <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
 </head>
 <body ng-controller="BodyCtrl" ng-class="{start : start}">
 <div ng-view></div>
+<!-- build:js ../build/script/lib.js -->
 <script src="bower_components/angular/angular.js"></script>
 <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
 <% for(var i=0; i<scripts.length; i++) {%><script src="bower_components/<%= scripts[i] %>/<%= scripts[i] %>.js"></script>
 <% } %>
+<!-- endbuild -->
+<!-- build:js ../build/script/online.js -->
 <script src="scripts/app.js"></script>
 <script src="scripts/controllers.js"></script>
 <script src="scripts/services.js"></script>
 <script src="scripts/values.js"></script>
 <script src="scripts/directives.js"></script>
-
+<!-- endbuild -->
 <script src="http://analytics.163.com/ntes.js" type="text/javascript"></script>
 <script type="text/javascript">
     _ntes_nacc = "wap";

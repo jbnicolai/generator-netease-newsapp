@@ -2,12 +2,18 @@
   "name": "<%= appName %>",
   "version": "0.0.0",
   "devDependencies": {
-   "browser-sync": "*",
-   "gulp": "*",
-   "gulp-autoprefixer": "*",
-   "gulp-sass": "*",
-   "gulp-load-plugins": "*"
-   <%= dependencies%>
+      "browser-sync": "*",
+      "gulp": "*",
+      "gulp-autoprefixer": "*",
+      "gulp-uglify": "*",
+      "gulp-csso": "*",
+      "gulp-concat": "*",
+      "gulp-size": "*",
+      "gulp-if": "*",
+      "gulp-useref": "*",
+      "gulp-replace": "*",
+      "gulp-load-plugins": "*"
+      <%= dependencies%>
   },
   "engines": {
     "node": ">=0.10.0"
