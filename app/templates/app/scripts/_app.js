@@ -9,7 +9,7 @@
  * Main module of the application.
  */
 angular
-    .module('<%= appName %>', ["ngSanitize",<%= angularModules %>])<% if (angularModules.indexOf('ngRoute') >= 0) { %>
+    .module('<%= appName %>', ["ngSanitize","NeteaseNewsappJsBridge",<%= angularModules %>])<% if (angularModules.indexOf('ngRoute') >= 0) { %>
         .config(function ($routeProvider) {
             $routeProvider
                 .when('/', {

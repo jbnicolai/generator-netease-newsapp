@@ -51,7 +51,7 @@ var NeteaseNewsappGenerator = yeoman.generators.Base.extend({
         this.jsBowerDependencies = self.promptsResult.scriptModules.reduce(function(p,v,i){
             p[v.name] = "*";
             return p;
-        },{"angular": "*","angular-sanitize": "*"});
+        },{"angular": "*","angular-sanitize": "*","angular-netease-newsapp":"*"});
         this.jsModules = self.promptsResult.scriptModules.map(function(v,i){
             return v.module;
         });
