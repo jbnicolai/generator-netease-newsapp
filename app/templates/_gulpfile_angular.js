@@ -2,6 +2,7 @@ var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
 var browserSync = require('browser-sync');
 var config = require('./package.json');
+var Deploy = require('./deploy');
 gulp.task('sass', function () {
     return gulp.src(['app/styles/*.scss','app/styles/*.sass'])
         .pipe($.sass({style: 'expanded'}))
@@ -78,8 +79,15 @@ gulp.task('build',['html'],function(){
     gulp.src('app/views/*.html')
         .pipe(gulp.dest('build/views'));
     gulp.src(['build/index.html'])
-        .pipe($.replace('../build/script/lib.js', 'http://img'+(Math.floor(Math.random()*6)+1)+'.cache.netease.com/utf8/'+config.name+'/script/lib.js?v='+new Date().getTime()))
-        .pipe($.replace('../build/script/online.js', 'http://img'+(Math.floor(Math.random()*6)+1)+'.cache.netease.com/utf8/'+config.name+'/script/online.js?v='+new Date().getTime()))
-        .pipe($.replace('../build/style/online.css', 'http://img'+(Math.floor(Math.random()*6)+1)+'.cache.netease.com/utf8/'+config.name+'/style/online.css?v='+new Date().getTime()))
+        .pipe($.replace('../build/scripts/lib.js', 'http://img'+(Math.floor(Math.random()*6)+1)+'.cache.netease.com/utf8/'+config.name+'/scripts/lib.js?v='+new Date().getTime()))
+        .pipe($.replace('../build/scripts/online.js', 'http://img'+(Math.floor(Math.random()*6)+1)+'.cache.netease.com/utf8/'+config.name+'/scripts/online.js?v='+new Date().getTime()))
+        .pipe($.replace('../build/styles/online.css', 'http://img'+(Math.floor(Math.random()*6)+1)+'.cache.netease.com/utf8/'+config.name+'/styles/online.css?v='+new Date().getTime()))
         .pipe(gulp.dest('build/'))
+});
+
+gulp.task('deploy',function(){
+    var deploy_resource = new Deploy();
+    deploy_resource.connect('resource').then(function(){
+        return deploy_resource.uploadResource(config.name);
+    });
 });

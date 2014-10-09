@@ -86,7 +86,9 @@ var NeteaseNewsappGenerator = yeoman.generators.Base.extend({
           appName : this.appName,
           dependencies : JSON.stringify(this.jsBowerDependencies)
       });
+      this.template('_ftp.json', 'ftp.json',{});
       this.template('_gulpfile_'+this.appType+'.js', 'gulpfile.js',{});
+      this.template('_deploy_'+this.appType+'.js', 'deploy.js',{});
       this.template('_package.json', 'package.json',{
           appName : this.appName,
           dependencies : this.cssNpmDependencies

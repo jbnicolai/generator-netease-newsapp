@@ -1,0 +1,22 @@
+{
+    "resource": {
+        "host": "61.135.251.132",
+        "port": 16321,
+        "user": "bjyangchen",
+        "password": "netease@163",
+        "urlBase": "/utf8",
+        "include": ["scripts","styles"]
+    },
+    "pageOnline": {
+        "host": "220.181.29.249",
+        "port": 16321,
+        "user": "glli_activity",
+        "password": "unbug@163"
+    },
+    "pageTest": {
+        "host": "220.181.8.33",
+        "port": 16321,
+        "user": "glli_activity",
+        "password": "unbug@163"
+    }
+}
