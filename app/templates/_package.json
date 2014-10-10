@@ -2,7 +2,12 @@
   "name": "<%= appName %>",
   "version": "0.0.0",
   "devDependencies": {
+      "q": "*",
+      "ftp": "*",
+      "pem": "*",
+      "merge": "*",
       "browser-sync": "*",
+      "request": "*",
       "gulp": "*",
       "gulp-autoprefixer": "*",
       "gulp-uglify": "*",

@@ -3,6 +3,9 @@ var $ = require('gulp-load-plugins')();
 var browserSync = require('browser-sync');
 var config = require('./package.json');
 var Deploy = require('./deploy');
+
+var resourceTag = 1;
+
 gulp.task('sass', function () {
     return gulp.src(['app/styles/*.scss','app/styles/*.sass'])
         .pipe($.sass({style: 'expanded'}))
@@ -76,18 +79,34 @@ gulp.task('server', ['browser-sync','watch'], function () {
 
 });
 gulp.task('build',['html'],function(){
+    resourceTag = Math.floor(Math.random()*6)+1;
     gulp.src('app/views/*.html')
         .pipe(gulp.dest('build/views'));
     gulp.src(['build/index.html'])
-        .pipe($.replace('../build/scripts/lib.js', 'http://img'+(Math.floor(Math.random()*6)+1)+'.cache.netease.com/utf8/'+config.name+'/scripts/lib.js?v='+new Date().getTime()))
-        .pipe($.replace('../build/scripts/online.js', 'http://img'+(Math.floor(Math.random()*6)+1)+'.cache.netease.com/utf8/'+config.name+'/scripts/online.js?v='+new Date().getTime()))
-        .pipe($.replace('../build/styles/online.css', 'http://img'+(Math.floor(Math.random()*6)+1)+'.cache.netease.com/utf8/'+config.name+'/styles/online.css?v='+new Date().getTime()))
+        .pipe($.replace('../build/scripts/lib.js', 'http://img'+resourceTag+'.cache.netease.com/utf8/'+config.name+'/scripts/lib.js?v='+new Date().getTime()))
+        .pipe($.replace('../build/scripts/online.js', 'http://img'+resourceTag+'.cache.netease.com/utf8/'+config.name+'/scripts/online.js?v='+new Date().getTime()))
+        .pipe($.replace('../build/styles/online.css', 'http://img'+resourceTag+'.cache.netease.com/utf8/'+config.name+'/styles/online.css?v='+new Date().getTime()))
         .pipe(gulp.dest('build/'))
 });
 
-gulp.task('deploy',function(){
+gulp.task('deploy_resource',['build'],function(){
     var deploy_resource = new Deploy();
-    deploy_resource.connect('resource').then(function(){
-        return deploy_resource.uploadResource(config.name);
-    });
+    deploy_resource.connect('resource')
+        .then(function(){
+            return deploy_resource.uploadResource(config.name,resourceTag);
+        });
+});
+gulp.task('deploy_pageTest',['build'],function(){
+    var deploy_page = new Deploy();
+    deploy_page.connect('pageTest')
+        .then(function(){
+            return deploy_page.uploadPage(config.name,'pageTest');
+        });
+});
+gulp.task('deploy_pageOnline',['build'],function(){
+    var deploy_page = new Deploy();
+    deploy_page.connect('pageOnline')
+        .then(function(){
+            return deploy_page.uploadPage(config.name,'pageOnline');
+        });
 });
