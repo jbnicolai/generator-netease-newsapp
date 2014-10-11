@@ -66,6 +66,7 @@ var NeteaseNewsappGenerator = yeoman.generators.Base.extend({
   configuring: function(){
       this.src.copy('editorconfig', '.editorconfig');
       this.src.copy('jshintrc', '.jshintrc');
+      this.src.copy('_.bowerrc', '.bowerrc');
   },
   writing: function () {
       this.dest.mkdir('app');
