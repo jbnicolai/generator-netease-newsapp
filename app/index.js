@@ -73,7 +73,7 @@ var NeteaseNewsappGenerator = yeoman.generators.Base.extend({
       this.dest.mkdir('app/scripts');
       this.dest.mkdir('app/styles');
       if(this.styleType == 'sass'){
-          this.dest.write('app/styles/main.'+this.sassType,'');
+          this.dest.write('app/styles/main.'+this.sassType,'/*This file can not be empty.There is a bug of gulp-sass*/');
       }
       if(this.styleType == 'less'){
           this.dest.write('app/styles/main.less','');

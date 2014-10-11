@@ -24,14 +24,14 @@ gulp.task('style', function () {
     return gulp.src('app/styles/*.css')
         .pipe($.concat('online.css'))
         .pipe($.csso())
-        .pipe(gulp.dest('build'))
+        .pipe(gulp.dest('build/styles'))
         .pipe($.size({title:'online.css'}));
 });
 gulp.task('script', function () {
     return gulp.src('app/scripts/*.js')
         .pipe($.concat('online.js'))
         .pipe($.uglify())
-        .pipe(gulp.dest('build'))
+        .pipe(gulp.dest('build/scripts'))
         .pipe($.size({title:'online.js'}));
 });
 gulp.task('html', function () {
