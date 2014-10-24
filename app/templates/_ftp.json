@@ -1,22 +1,28 @@
 {
-    "resource": {
-        "host": "61.135.251.132",
-        "port": 16321,
-        "user": "",
-        "password": "",
-        "urlBase": "/utf8",
-        "include": ["scripts","styles"]
-    },
-    "pageOnline": {
-        "host": "220.181.29.249",
-        "port": 16321,
-        "user": "",
-        "password": ""
-    },
-    "pageTest": {
-        "host": "220.181.8.33",
-        "port": 16321,
-        "user": "",
-        "password": ""
-    }
+  "resource": {
+    "host": "61.135.251.132",
+    "port": 16321,
+    "user": "",
+    "password": "",
+    "urlBase": "/utf8",
+    "include": ["scripts","styles"]
+  },
+  "online": {
+    "host": "220.181.29.249",
+    "port": 16321,
+    "user": "",
+    "password": "",
+    "urlBase": "",
+    "fileDir": "./build",
+    "locationBase": "http://c.3g.163.com/nc/qa/"
+  },
+  "test": {
+    "host": "220.181.8.33",
+    "port": 16321,
+    "user": "",
+    "password": "",
+    "urlBase": "",
+    "fileDir":"./test",
+    "locationBase": "http://t.c.m.163.com/qa/"
+  }
 }
