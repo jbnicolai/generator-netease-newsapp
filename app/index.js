@@ -54,9 +54,9 @@ var NeteaseNewsappGenerator = yeoman.generators.Base.extend({
             return v.module;
         });
         this.styleType = self.promptsResult.styleType;
-        if(self.promptsResult.styleType != 'normal') {
+        /*if(self.promptsResult.styleType != 'normal') {
             this.cssNpmDependencies = ',"gulp-' + self.promptsResult.styleType + '": "*"';
-        }
+        }*/
         if(self.promptsResult.styleType == 'sass'){
             this.sassType = self.promptsResult.sassType;
         }

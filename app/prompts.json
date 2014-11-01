@@ -20,10 +20,6 @@
             "message": "What's your script architecture?",
             "choices": [
                 {
-                    "name": "Normal",
-                    "value": "normal"
-                },
-                {
                     "name": "Angular",
                     "value": "angular"
                 }
@@ -71,42 +67,12 @@
             ]
         }
     ],
-    "normal" : [
-        {
-            "type": "checkbox",
-            "name": "scriptModules",
-            "message": "Which library would you want to install?",
-            "choices": [
-                {
-                    "value": {
-                        "name": "zepto",
-                        "module": "zepto"
-                    },
-                    "name": "zepto.js",
-                    "checked": true
-                },
-                {
-                    "value": {
-                        "name": "jquery",
-                        "module": "jquery"
-                    },
-                    "name": "jquery.js",
-                    "checked": false
-                }
-            ]
-        }
-    ],
     "style" : [
         {
             "type": "list",
             "name": "styleType",
             "message": "What's your css type?",
             "choices": [
-                {
-                    "value": "normal",
-                    "name": "Normal",
-                    "checked": true
-                },
                 {
                     "value": "sass",
                     "name": "Sass",

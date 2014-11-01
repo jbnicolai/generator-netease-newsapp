@@ -57,6 +57,9 @@ gulp.task('local',function(){
     .pipe($.replace('href="styles','href="http://'+ipAddress+'/styles'))
     .pipe($.replace('./images','http://'+ipAddress+'/images'))
     .pipe(gulp.dest('test/'));
+  gulp.src('app/scripts/values.js')
+    .pipe($.replace('../images','http://'+ipAddress+'/images'))
+    .pipe(gulp.dest('app/scripts/'));
   gulp.src('app/views/*.html')
     .pipe(gulp.dest('test/views/'))
     .pipe($.replace('../images','http://'+ipAddress+'/images'))
