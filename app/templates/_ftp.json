@@ -7,6 +7,14 @@
     "urlBase": "/utf8",
     "include": ["scripts","styles"]
   },
+  "image": {
+    "host": "61.135.251.132",
+    "port": 16321,
+    "user": "",
+    "password": "",
+    "urlBase": "/utf8",
+    "include": ["images"]
+  },
   "online": {
     "host": "220.181.29.249",
     "port": 16321,

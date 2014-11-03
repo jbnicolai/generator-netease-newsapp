@@ -18,7 +18,7 @@ Deploy.prototype.connect = function(type){
   var self = this;
   var deferred = q.defer();
   if(!this.isConnected) {
-    if(type == 'resource') {
+    if(type == 'resource' || type == 'image') {
       pem.createCertificate({}, function (e, r) {
         self.client.connect(merge(ftpConfig[type], {
             secure: true,
@@ -109,6 +109,39 @@ Deploy.prototype.uploadPage = function(app,type){
     return deferred0.promise;
   }
   return basePromise().then(
+    function(){
+      self.client.end();
+    }
+  );
+};
+Deploy.prototype.uploadImage = function(app,resourceTag){
+  var self = this;
+  function basePromise(){
+    var deferred = q.defer();
+    self.client.mkdir(ftpConfig.image.urlBase+'/'+app,true,function(){
+      deferred.resolve();
+    });
+    return deferred.promise;
+  }
+  return basePromise().then(function(){
+    return q.all(ftpConfig.image.include.map(function(v,i){
+      var deferred = q.defer();
+      self.client.mkdir(ftpConfig.image.urlBase+'/'+app+'/'+v,true,function(){
+        fs.readdir('./app/'+v, function (err, files) {
+          if(files.length > 0) {
+            files.map(function (w, i) {
+              fs.statSync('./app/'+v+'/'+w).isFile() && self.client.put('./app/'+v+'/'+w,ftpConfig.image.urlBase+'/'+app+'/'+v+'/'+w,false,function(e){
+                //request.get('http://61.135.251.132:81/upimage/cleanmain.php?url=http://img'+resourceTag+'.cache.netease.com'+ftpConfig.resource.urlBase+'/'+app+'/'+v+'/'+w,function(error, response, body){
+                deferred.resolve();
+                //});
+              });
+            });
+          }
+        });
+      });
+      return deferred.promise;
+    }));
+  }).then(
     function(){
       self.client.end();
     }

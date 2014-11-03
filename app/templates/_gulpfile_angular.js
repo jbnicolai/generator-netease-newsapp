@@ -39,17 +39,33 @@ gulp.task('script', function () {
 });
 gulp.task('html', function () {
   var assets = $.useref.assets();
-
-  return gulp.src('app/*.html')
+  var ipAddress = ip.address();
+  resourceTag = Math.floor(Math.random()*6)+1;
+  gulp.src('app/scripts/values.js')
+    .pipe($.replace('../images','http://img'+resourceTag+'.cache.netease.com/utf8/'+config.name+'/images'))
+    .pipe($.replace(ipAddress,'img'+resourceTag+'.cache.netease.com/utf8/'+config.name))
+    .pipe($.replace('./','http://c.3g.163.com/nc/qa/'+config.name+'/'))
+    .pipe($.replace('t.c.m.163.com/qa/'+config.name+'/','c.3g.163.com/nc/qa/'+config.name+'/'))
+    .pipe($.replace('t.c.m.163.com','c.3g.163.com'))
+    .pipe(gulp.dest('app/scripts/'));
+  gulp.src('app/*.html')
     .pipe(assets)
     .pipe($.if('*.js', $.uglify()))
     .pipe($.if('*.css', $.csso()))
     .pipe(assets.restore())
     .pipe($.useref())
+    .pipe(gulp.dest('build'))
+    .pipe($.replace('../images','http://img'+resourceTag+'.cache.netease.com/utf8/'+config.name+'/images'))
+    .pipe($.replace(ipAddress,'img'+resourceTag+'.cache.netease.com/utf8/'+config.name))
     .pipe(gulp.dest('build'));
+  gulp.src('build/views/*.html')
+    .pipe($.replace('../images','http://img'+resourceTag+'.cache.netease.com/utf8/'+config.name+'/images'))
+    .pipe($.replace(ipAddress,'img'+resourceTag+'.cache.netease.com/utf8/'+config.name))
+    .pipe(gulp.dest('build/views/'))
 });
 gulp.task('local',function(){
   var ipAddress = ip.address();
+  var regexp = new RegExp("img[1-6].cache.netease.com/utf8/"+config.name,'g');
   gulp.src('app/*.html')
     .pipe(gulp.dest('test/'))
     .pipe($.replace('src="bower_components','src="http://'+ipAddress+'/bower_components'))
@@ -59,6 +75,10 @@ gulp.task('local',function(){
     .pipe(gulp.dest('test/'));
   gulp.src('app/scripts/values.js')
     .pipe($.replace('../images','http://'+ipAddress+'/images'))
+    .pipe($.replace('./','http://t.c.m.163.com/qa/'+config.name+'/'))
+    .pipe($.replace('c.3g.163.com/nc/qa/'+config.name+'/','t.c.m.163.com/qa/'+config.name+'/'))
+    .pipe($.replace('c.3g.163.com','t.c.m.163.com'))
+    .pipe($.replace(regexp,ipAddress))
     .pipe(gulp.dest('app/scripts/'));
   gulp.src('app/views/*.html')
     .pipe(gulp.dest('test/views/'))
@@ -111,12 +131,23 @@ gulp.task('build',['html'],function(){
 });
 
 gulp.task('deploy:resource',['build'],function(){
+  resourceTag = Math.floor(Math.random()*6)+1;
   var deploy_resource = new Deploy();
   deploy_resource.connect('resource')
     .then(function(){
       return deploy_resource.uploadResource(config.name,resourceTag);
     });
 });
+
+gulp.task('deploy:image',function(){
+  resourceTag = Math.floor(Math.random()*6)+1;
+  var deploy_images = new Deploy();
+  deploy_images.connect('image')
+    .then(function(){
+      return deploy_images.uploadImage(config.name,resourceTag);
+    })
+});
+
 gulp.task('deploy:test',['local'],function(){
   var deploy_page = new Deploy();
   deploy_page.connect('test')
@@ -125,6 +156,9 @@ gulp.task('deploy:test',['local'],function(){
     })
     .then(function(){
       open(ftpConfig['test'].locationBase+config.name+'/index.html','google chrome');
+    })
+    .then(function(){
+
     });
 });
 gulp.task('deploy:online',['build'],function(){
