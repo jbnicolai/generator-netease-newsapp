@@ -48,7 +48,10 @@ gulp.task('html', function () {
     .pipe($.replace('t.c.m.163.com/qa/'+config.name+'/','c.3g.163.com/nc/qa/'+config.name+'/'))
     .pipe($.replace('t.c.m.163.com','c.3g.163.com'))
     .pipe(gulp.dest('app/scripts/'));
-  gulp.src('app/*.html')
+
+
+
+  return gulp.src('app/*.html')
     .pipe(assets)
     .pipe($.if('*.js', $.uglify()))
     .pipe($.if('*.css', $.csso()))
@@ -58,10 +61,6 @@ gulp.task('html', function () {
     .pipe($.replace('../images','http://img'+resourceTag+'.cache.netease.com/utf8/'+config.name+'/images'))
     .pipe($.replace(ipAddress,'img'+resourceTag+'.cache.netease.com/utf8/'+config.name))
     .pipe(gulp.dest('build'));
-  gulp.src('build/views/*.html')
-    .pipe($.replace('../images','http://img'+resourceTag+'.cache.netease.com/utf8/'+config.name+'/images'))
-    .pipe($.replace(ipAddress,'img'+resourceTag+'.cache.netease.com/utf8/'+config.name))
-    .pipe(gulp.dest('build/views/'))
 });
 gulp.task('local',function(){
   var ipAddress = ip.address();
@@ -77,7 +76,7 @@ gulp.task('local',function(){
     .pipe($.replace('../images','http://'+ipAddress+'/images'))
     .pipe($.replace('./','http://t.c.m.163.com/qa/'+config.name+'/'))
     .pipe($.replace('c.3g.163.com/nc/qa/'+config.name+'/','t.c.m.163.com/qa/'+config.name+'/'))
-    .pipe($.replace('c.3g.163.com','t.c.m.163.com'))
+    .pipe($.replace('c.3g.163.com/uc','t.c.m.163.com/uc'))
     .pipe($.replace(regexp,ipAddress))
     .pipe(gulp.dest('app/scripts/'));
   gulp.src('app/views/*.html')
@@ -120,14 +119,22 @@ gulp.task('server', ['browser-sync','watch'], function () {
 
 });
 gulp.task('build',['html'],function(){
+  var ipAddress = ip.address();
   resourceTag = Math.floor(Math.random()*6)+1;
   gulp.src('app/views/*.html')
+    .pipe(gulp.dest('build/views'))
+    .pipe($.replace('../images','http://img'+resourceTag+'.cache.netease.com/utf8/'+config.name+'/images'))
+    .pipe($.replace(ipAddress,'img'+resourceTag+'.cache.netease.com/utf8/'+config.name))
     .pipe(gulp.dest('build/views'));
-  gulp.src(['build/index.html'])
+
+  gulp.src('build/index.html')
     .pipe($.replace('../build/scripts/lib.js', 'http://img'+resourceTag+'.cache.netease.com/utf8/'+config.name+'/scripts/lib.js?v='+new Date().getTime()))
     .pipe($.replace('../build/scripts/online.js', 'http://img'+resourceTag+'.cache.netease.com/utf8/'+config.name+'/scripts/online.js?v='+new Date().getTime()))
     .pipe($.replace('../build/styles/online.css', 'http://img'+resourceTag+'.cache.netease.com/utf8/'+config.name+'/styles/online.css?v='+new Date().getTime()))
-    .pipe(gulp.dest('build/'))
+    .pipe($.replace('./images', 'http://img'+resourceTag+'.cache.netease.com/utf8/'+config.name+'/images'))
+    .pipe($.replace('t.c.m.163.com/qa/'+config.name+'/','c.3g.163.com/nc/qa/'+config.name+'/'))
+    .pipe($.replace('t.c.m.163.com','c.3g.163.com'))
+    .pipe(gulp.dest('build'));
 });
 
 gulp.task('deploy:resource',['build'],function(){
