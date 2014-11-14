@@ -173,5 +173,11 @@ gulp.task('deploy:online',['build'],function(){
   deploy_page.connect('online')
     .then(function(){
       return deploy_page.uploadPage(config.name,'online');
+    })
+    .then(function(){
+      open(ftpConfig['online'].locationBase+config.name+'/index.html','google chrome');
+    })
+    .then(function(){
+
     });
 });
