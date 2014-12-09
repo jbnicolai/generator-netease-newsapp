@@ -33,9 +33,31 @@ yo netease-newsapp
 
 3.script
 
-`gulp style` Concat and minify javascript files from app/scripts directory,then put them to build/scripts.
+`gulp script` Concat and minify javascript files from app/scripts directory,then put them to build/scripts.
 
+4.server
 
+`gulp server` Start a http server to serve the `app` directory.
+
+5.build
+
+`gulp build` Concat and minify the needed files.
+ 
+6.deploy:resource
+ 
+`gulp deploy:resource` Deploy the js and css files to the resource server then clear the CDN cache.
+
+7.deploy:image
+
+`gulp deploy:image` Deploy the image files to the image server. 
+
+8.deploy:test
+
+`gulp deploy:test` Redirect all the resource url to the local server then deploy the html files to the test server.
+
+9.deploy:online
+
+`gulp deploy:online` Redirect all the resource url to the online resource server then deploy the html files to the online server.
 
 ## License
 

@@ -136,7 +136,6 @@ gulp.task('build',['html'],function(){
     .pipe($.replace('t.c.m.163.com','c.3g.163.com'))
     .pipe(gulp.dest('build'));
 });
-
 gulp.task('deploy:resource',['build'],function(){
   resourceTag = Math.floor(Math.random()*6)+1;
   var deploy_resource = new Deploy();
@@ -145,7 +144,6 @@ gulp.task('deploy:resource',['build'],function(){
       return deploy_resource.uploadResource(config.name,resourceTag);
     });
 });
-
 gulp.task('deploy:image',function(){
   resourceTag = Math.floor(Math.random()*6)+1;
   var deploy_images = new Deploy();
@@ -154,7 +152,6 @@ gulp.task('deploy:image',function(){
       return deploy_images.uploadImage(config.name,resourceTag);
     })
 });
-
 gulp.task('deploy:test',['local'],function(){
   var deploy_page = new Deploy();
   deploy_page.connect('test')
